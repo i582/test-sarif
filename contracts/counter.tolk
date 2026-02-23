@@ -8,6 +8,9 @@ fun onInternalMessage(in: InMessage) {
     var a = 100;
     a = 200;
 
+    var b = 100;
+    b = "200";
+
     match (msg) {
         IncreaseCounter => {
             var storage = lazy Storage.load();

@@ -9,6 +9,39 @@
       },
       "results": [
         {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/counter.tolk",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "byteLength": 5,
+                  "byteOffset": 220,
+                  "endColumn": 14,
+                  "endLine": 12,
+                  "startColumn": 9,
+                  "startLine": 12
+                }
+              },
+              "properties": {
+                "actonIsPrimary": true
+              }
+            }
+          ],
+          "message": {
+            "markdown": "can not assign `string` to variable of type `int`",
+            "text": "can not assign `string` to variable of type `int`"
+          },
+          "properties": {
+            "actonDiagnosticName": "compiler-error"
+          },
+          "ruleId": "compiler-error",
+          "ruleIndex": 2
+        },
+        {
           "fixes": [
             {
               "artifactChanges": [
@@ -21,11 +54,11 @@
                     {
                       "deletedRegion": {
                         "byteLength": 3,
-                        "byteOffset": 412,
+                        "byteOffset": 445,
                         "endColumn": 16,
-                        "endLine": 18,
+                        "endLine": 21,
                         "startColumn": 13,
-                        "startLine": 18
+                        "startLine": 21
                       },
                       "insertedContent": {
                         "text": "val"
@@ -57,11 +90,11 @@
                 },
                 "region": {
                   "byteLength": 7,
-                  "byteOffset": 416,
+                  "byteOffset": 449,
                   "endColumn": 24,
-                  "endLine": 18,
+                  "endLine": 21,
                   "startColumn": 17,
-                  "startLine": 18
+                  "startLine": 21
                 }
               },
               "properties": {
@@ -140,6 +173,68 @@
           ],
           "ruleId": "E005",
           "ruleIndex": 1
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "message": {
+                "markdown": "variable `b` is write-only",
+                "text": "variable `b` is write-only"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/counter.tolk",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "byteLength": 1,
+                  "byteOffset": 203,
+                  "endColumn": 10,
+                  "endLine": 11,
+                  "startColumn": 9,
+                  "startLine": 11
+                }
+              },
+              "properties": {
+                "actonIsPrimary": true
+              }
+            }
+          ],
+          "message": {
+            "markdown": "variable is only written to but never read",
+            "text": "variable is only written to but never read"
+          },
+          "properties": {
+            "actonDiagnosticName": "write-only-variable"
+          },
+          "relatedLocations": [
+            {
+              "message": {
+                "markdown": "first write usage here",
+                "text": "first write usage here"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/counter.tolk",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "byteLength": 1,
+                  "byteOffset": 216,
+                  "endColumn": 6,
+                  "endLine": 12,
+                  "startColumn": 5,
+                  "startLine": 12
+                }
+              },
+              "properties": {
+                "actonIsPrimary": false
+              }
+            }
+          ],
+          "ruleId": "E005",
+          "ruleIndex": 1
         }
       ],
       "tool": {
@@ -193,6 +288,29 @@
               "shortDescription": {
                 "markdown": "E005: variable is only written to but never read",
                 "text": "E005: variable is only written to but never read"
+              }
+            },
+            {
+              "fullDescription": {
+                "markdown": "### What it does\nReports any compiler error.\n",
+                "text": "What it does\nReports any compiler error.\n"
+              },
+              "help": {
+                "markdown": "### What it does\nReports any compiler error.\n",
+                "text": "What it does\nReports any compiler error.\n"
+              },
+              "id": "compiler-error",
+              "name": "compiler-error",
+              "properties": {
+                "actonDefinitionFile": "crates/tolk-linter/src/rules/ast/compiler_error.rs",
+                "actonDefinitionLine": 7,
+                "actonFixAvailability": "None",
+                "actonRuleGroupSince": "v0.0.1",
+                "actonRuleGroupStatus": "stable"
+              },
+              "shortDescription": {
+                "markdown": "compiler-error: can not assign `string` to variable of type `int`",
+                "text": "compiler-error: can not assign `string` to variable of type `int`"
               }
             }
           ]
