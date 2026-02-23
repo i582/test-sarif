@@ -1,0 +1,22 @@
+name: Upload Acton SARIF
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  sarif:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: results.sarif
+          category: acton-lint
