@@ -16,7 +16,7 @@ fun onInternalMessage(in: InMessage) {
         }
         ResetCounter => {
             var storage = lazy Storage.load();
-            storage.counter = 0;
+            // storage.counter = 0;
             storage.save();
         }
         else => {

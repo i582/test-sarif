@@ -4,10 +4,78 @@
     {
       "originalUriBaseIds": {
         "SRCROOT": {
-          "uri": "/Users/petrmakhnev/RustroverProjects/untitled57/"
+          "uri": "/Users/petrmakhnev/test-sarif/"
         }
       },
       "results": [
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "contracts/counter.tolk",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "byteLength": 3,
+                        "byteOffset": 412,
+                        "endColumn": 16,
+                        "endLine": 18,
+                        "startColumn": 13,
+                        "startLine": 18
+                      },
+                      "insertedContent": {
+                        "text": "val"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "use `val` instead"
+              },
+              "properties": {
+                "actonApplicability": "auto"
+              }
+            }
+          ],
+          "level": "warning",
+          "locations": [
+            {
+              "message": {
+                "text": "can be made val"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/counter.tolk",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "byteLength": 7,
+                  "byteOffset": 416,
+                  "endColumn": 24,
+                  "endLine": 18,
+                  "startColumn": 17,
+                  "startLine": 18
+                }
+              },
+              "properties": {
+                "actonIsPrimary": true
+              }
+            }
+          ],
+          "message": {
+            "text": "variable can be immutable"
+          },
+          "properties": {
+            "actonDiagnosticName": "mutable-variable-can-be-immutable"
+          },
+          "ruleId": "E003",
+          "ruleIndex": 0
+        },
         {
           "level": "warning",
           "locations": [
@@ -37,6 +105,9 @@
           "message": {
             "text": "variable is only written to but never read"
           },
+          "properties": {
+            "actonDiagnosticName": "write-only-variable"
+          },
           "relatedLocations": [
             {
               "message": {
@@ -62,7 +133,7 @@
             }
           ],
           "ruleId": "E005",
-          "ruleIndex": 0
+          "ruleIndex": 1
         }
       ],
       "tool": {
@@ -70,6 +141,24 @@
           "informationUri": "https://i582.github.io/acton/docs/commands/check",
           "name": "acton check",
           "rules": [
+            {
+              "fullDescription": {
+                "text": "### What it does\nChecks for variables that are declared as mutable (`var`) but are never mutated.\n\n### Why is this bad?\nUsing `val` instead of `var` makes the code clearer by signaling that the variable's value will not change.\n\n### Example\n```tolk\nfun main() {\n    var x = 1;\n    println(x);\n}\n```\n\nUse instead:\n```tolk\nfun main() {\n    val x = 1;\n    println(x);\n}\n```\n"
+              },
+              "helpUri": "https://i582.github.io/acton/docs/linter/e003-mutable-variable-can-be-immutable",
+              "id": "E003",
+              "name": "mutable-variable-can-be-immutable",
+              "properties": {
+                "actonDefinitionFile": "crates/tolk-linter/src/rules/ast/mutable_variable_can_be_immutable.rs",
+                "actonDefinitionLine": 33,
+                "actonFixAvailability": "Always",
+                "actonRuleGroupSince": "v0.0.1",
+                "actonRuleGroupStatus": "stable"
+              },
+              "shortDescription": {
+                "text": "Checks for variables that are declared as mutable (`var`) but are never mutated."
+              }
+            },
             {
               "fullDescription": {
                 "text": "### What it does\nChecks for variables that are written to but never read.\n\n### Why is this bad?\nA variable that is only written to but never read is likely a bug or redundant code.\n\n### Example\n```tolk\nfun main() {\n    var x = 1;\n    x = 2;\n    println(\"hello\");\n}\n```\n\nUse instead:\n```tolk\nfun main() {\n    println(\"hello\");\n}\n```\n"
@@ -81,12 +170,8 @@
                 "actonDefinitionFile": "crates/tolk-linter/src/rules/ast/write_only_variable.rs",
                 "actonDefinitionLine": 29,
                 "actonFixAvailability": "None",
-                "actonRuleGroup": {
-                  "since": {
-                    "since": "v0.0.1"
-                  },
-                  "status": "stable"
-                }
+                "actonRuleGroupSince": "v0.0.1",
+                "actonRuleGroupStatus": "stable"
               },
               "shortDescription": {
                 "text": "Checks for variables that are written to but never read."
