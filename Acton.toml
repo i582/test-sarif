@@ -1,0 +1,33 @@
+[package]
+name = "untitled57"
+description = "A TON blockchain project"
+version = "0.1.0"
+license = "MIT"
+
+[contracts.counter]
+name = "counter"
+src = "contracts/counter.tolk"
+depends = []
+
+[test]
+
+[fmt]
+width = 100
+ignore = []
+
+[lint]
+exclude = ["**/*.test.tolk"]
+
+[lint.rules]
+unused-variable = "deny"
+
+[scripts]
+deploy-emulation = "acton script scripts/deploy.tolk"
+deploy-testnet = "acton script scripts/deploy.tolk --broadcast --net testnet"
+
+[mappings]
+acton = ".acton"
+contracts = "contracts"
+gen = "gen"
+tests = "tests"
+wrappers = "tests/wrappers"
