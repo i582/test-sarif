@@ -35,6 +35,7 @@
                 }
               ],
               "description": {
+                "markdown": "use `val` instead",
                 "text": "use `val` instead"
               },
               "properties": {
@@ -46,6 +47,7 @@
           "locations": [
             {
               "message": {
+                "markdown": "can be made val",
                 "text": "can be made val"
               },
               "physicalLocation": {
@@ -68,6 +70,7 @@
             }
           ],
           "message": {
+            "markdown": "variable can be immutable",
             "text": "variable can be immutable"
           },
           "properties": {
@@ -81,6 +84,7 @@
           "locations": [
             {
               "message": {
+                "markdown": "variable `a` is write-only",
                 "text": "variable `a` is write-only"
               },
               "physicalLocation": {
@@ -103,6 +107,7 @@
             }
           ],
           "message": {
+            "markdown": "variable is only written to but never read",
             "text": "variable is only written to but never read"
           },
           "properties": {
@@ -111,6 +116,7 @@
           "relatedLocations": [
             {
               "message": {
+                "markdown": "first write usage here",
                 "text": "first write usage here"
               },
               "physicalLocation": {
@@ -143,6 +149,7 @@
           "rules": [
             {
               "fullDescription": {
+                "markdown": "### What it does\nChecks for variables that are declared as mutable (`var`) but are never mutated.\n\n### Why is this bad?\nUsing `val` instead of `var` makes the code clearer by signaling that the variable's value will not change.\n\n### Example\n```tolk\nfun main() {\n    var x = 1;\n    println(x);\n}\n```\n\nUse instead:\n```tolk\nfun main() {\n    val x = 1;\n    println(x);\n}\n```\n",
                 "text": "What it does\nChecks for variables that are declared as mutable (var) but are never mutated.\n\nWhy is this bad?\nUsing val instead of var makes the code clearer by signaling that the variable's value will not change.\n\nExample\nfun main() {\n    var x = 1;\n    println(x);\n}\n\nUse instead:\nfun main() {\n    val x = 1;\n    println(x);\n}\n"
               },
               "help": {
@@ -160,11 +167,13 @@
                 "actonRuleGroupStatus": "stable"
               },
               "shortDescription": {
-                "text": "Checks for variables that are declared as mutable (`var`) but are never mutated."
+                "markdown": "E003: variable can be immutable",
+                "text": "E003: variable can be immutable"
               }
             },
             {
               "fullDescription": {
+                "markdown": "### What it does\nChecks for variables that are written to but never read.\n\n### Why is this bad?\nA variable that is only written to but never read is likely a bug or redundant code.\n\n### Example\n```tolk\nfun main() {\n    var x = 1;\n    x = 2;\n    println(\"hello\");\n}\n```\n\nUse instead:\n```tolk\nfun main() {\n    println(\"hello\");\n}\n```\n",
                 "text": "What it does\nChecks for variables that are written to but never read.\n\nWhy is this bad?\nA variable that is only written to but never read is likely a bug or redundant code.\n\nExample\nfun main() {\n    var x = 1;\n    x = 2;\n    println(\"hello\");\n}\n\nUse instead:\nfun main() {\n    println(\"hello\");\n}\n"
               },
               "help": {
@@ -182,7 +191,8 @@
                 "actonRuleGroupStatus": "stable"
               },
               "shortDescription": {
-                "text": "Checks for variables that are written to but never read."
+                "markdown": "E005: variable is only written to but never read",
+                "text": "E005: variable is only written to but never read"
               }
             }
           ]
