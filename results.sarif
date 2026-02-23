@@ -9,6 +9,39 @@
       },
       "results": [
         {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/counter.tolk",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "byteLength": 5,
+                  "byteOffset": 220,
+                  "endColumn": 14,
+                  "endLine": 12,
+                  "startColumn": 9,
+                  "startLine": 12
+                }
+              },
+              "properties": {
+                "actonIsPrimary": true
+              }
+            }
+          ],
+          "message": {
+            "markdown": "can not assign `string` to variable of type `int`",
+            "text": "can not assign `string` to variable of type `int`"
+          },
+          "properties": {
+            "actonDiagnosticName": "compiler-error"
+          },
+          "ruleId": "C001",
+          "ruleIndex": 0
+        },
+        {
           "fixes": [
             {
               "artifactChanges": [
@@ -21,11 +54,11 @@
                     {
                       "deletedRegion": {
                         "byteLength": 3,
-                        "byteOffset": 412,
+                        "byteOffset": 445,
                         "endColumn": 16,
-                        "endLine": 18,
+                        "endLine": 21,
                         "startColumn": 13,
-                        "startLine": 18
+                        "startLine": 21
                       },
                       "insertedContent": {
                         "text": "val"
@@ -57,11 +90,11 @@
                 },
                 "region": {
                   "byteLength": 7,
-                  "byteOffset": 416,
+                  "byteOffset": 449,
                   "endColumn": 24,
-                  "endLine": 18,
+                  "endLine": 21,
                   "startColumn": 17,
-                  "startLine": 18
+                  "startLine": 21
                 }
               },
               "properties": {
@@ -77,7 +110,7 @@
             "actonDiagnosticName": "mutable-variable-can-be-immutable"
           },
           "ruleId": "E003",
-          "ruleIndex": 0
+          "ruleIndex": 1
         },
         {
           "level": "warning",
@@ -139,7 +172,69 @@
             }
           ],
           "ruleId": "E005",
-          "ruleIndex": 1
+          "ruleIndex": 2
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "message": {
+                "markdown": "variable `b` is write-only",
+                "text": "variable `b` is write-only"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/counter.tolk",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "byteLength": 1,
+                  "byteOffset": 203,
+                  "endColumn": 10,
+                  "endLine": 11,
+                  "startColumn": 9,
+                  "startLine": 11
+                }
+              },
+              "properties": {
+                "actonIsPrimary": true
+              }
+            }
+          ],
+          "message": {
+            "markdown": "variable is only written to but never read",
+            "text": "variable is only written to but never read"
+          },
+          "properties": {
+            "actonDiagnosticName": "write-only-variable"
+          },
+          "relatedLocations": [
+            {
+              "message": {
+                "markdown": "first write usage here",
+                "text": "first write usage here"
+              },
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/counter.tolk",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "byteLength": 1,
+                  "byteOffset": 216,
+                  "endColumn": 6,
+                  "endLine": 12,
+                  "startColumn": 5,
+                  "startLine": 12
+                }
+              },
+              "properties": {
+                "actonIsPrimary": false
+              }
+            }
+          ],
+          "ruleId": "E005",
+          "ruleIndex": 2
         }
       ],
       "tool": {
@@ -147,6 +242,30 @@
           "informationUri": "https://i582.github.io/acton/docs/commands/check",
           "name": "acton check",
           "rules": [
+            {
+              "fullDescription": {
+                "markdown": "### What it does\nReports any compiler error.\n",
+                "text": "What it does\nReports any compiler error.\n"
+              },
+              "help": {
+                "markdown": "### What it does\nReports any compiler error.\n",
+                "text": "What it does\nReports any compiler error.\n"
+              },
+              "helpUri": "https://i582.github.io/acton/docs/linter/c001-compiler-error",
+              "id": "C001",
+              "name": "compiler-error",
+              "properties": {
+                "actonDefinitionFile": "crates/tolk-linter/src/rules/ast/compiler_error.rs",
+                "actonDefinitionLine": 7,
+                "actonFixAvailability": "None",
+                "actonRuleGroupSince": "v0.0.1",
+                "actonRuleGroupStatus": "stable"
+              },
+              "shortDescription": {
+                "markdown": "C001: can not assign `string` to variable of type `int`",
+                "text": "C001: can not assign `string` to variable of type `int`"
+              }
+            },
             {
               "fullDescription": {
                 "markdown": "### What it does\nChecks for variables that are declared as mutable (`var`) but are never mutated.\n\n### Why is this bad?\nUsing `val` instead of `var` makes the code clearer by signaling that the variable's value will not change.\n\n### Example\n```tolk\nfun main() {\n    var x = 1;\n    println(x);\n}\n```\n\nUse instead:\n```tolk\nfun main() {\n    val x = 1;\n    println(x);\n}\n```\n",
